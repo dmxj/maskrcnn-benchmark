@@ -88,7 +88,7 @@ class DatasetCatalog(object):
             data_dir = DatasetCatalog.DATA_DIR
             attrs = DatasetCatalog.DATASETS[name]
             args = dict(
-                root=os.path.join(data_dir, attrs["img_dir"]),
+                root=attrs["img_dir"] if os.path.isabs(attrs["img_dir"]) else os.path.join(data_dir, attrs["img_dir"]),
                 ann_file=os.path.join(data_dir, attrs["ann_file"]),
             )
             return dict(
@@ -99,7 +99,7 @@ class DatasetCatalog(object):
             data_dir = DatasetCatalog.DATA_DIR
             attrs = DatasetCatalog.DATASETS[name]
             args = dict(
-                data_dir=os.path.join(data_dir, attrs["data_dir"]),
+                data_dir=attrs["data_dir"] if os.path.isabs(attrs["data_dir"]) else os.path.join(data_dir, attrs["data_dir"]),
                 split=attrs["split"],
             )
             return dict(
